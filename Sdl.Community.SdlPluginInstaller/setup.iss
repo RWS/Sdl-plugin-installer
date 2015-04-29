@@ -5,7 +5,7 @@
 AppName=SDL plug-in installer
 AppPublisher=SDL Community Developers
 AppPublisherURL=https://community.sdl.com/
-AppVersion=0.9.1.0
+AppVersion=0.9.2.0
 DisableDirPage = yes
 DisableWelcomePage = yes
 AllowNoIcons = yes
@@ -19,6 +19,7 @@ Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.C
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Sdl.Community.SdlPluginInstaller.exe"; DestDir: "{app}"
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Sdl.Core.PluginFramework.PackageSupport.dll"; DestDir: "{app}"
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\ObjectListView.dll"; DestDir: "{app}"
+Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Sdl.Community.SdlPluginInstaller.exe.config"; DestDir: "{app}"
  
 
 [Registry]
