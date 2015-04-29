@@ -5,7 +5,7 @@
 AppName=SDL plug-in installer
 AppPublisher=SDL Community Developers
 AppPublisherURL=https://community.sdl.com/
-AppVersion=0.1.1.0
+AppVersion=0.9.1.0
 DisableDirPage = yes
 DisableWelcomePage = yes
 AllowNoIcons = yes
