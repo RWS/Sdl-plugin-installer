@@ -49,7 +49,12 @@ namespace Sdl.Community.SdlPluginInstaller
             textLicense.Rtf = Resources.SDL_OpenExchange_Terms_and_Conditions;
 
             var installedStudioVersions = _studioVersionService.GetInstalledStudioVersions();
-           
+            if (installedStudioVersions.Count == 0)
+            {
+                this.finalPage.Description = string.Format("There are no versions of SDL Studio installed.");
+                this.pluginInstallWizzard.SelectedPage = this.finalPage;
+            }
+
             studioVersionColumn.AspectGetter = delegate(object rowObject)
             {
                 var studioVersion = (StudioVersion)rowObject;
