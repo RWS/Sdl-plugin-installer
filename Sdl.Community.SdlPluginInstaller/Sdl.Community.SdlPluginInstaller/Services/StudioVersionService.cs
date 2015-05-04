@@ -17,7 +17,6 @@ namespace Sdl.Community.SdlPluginInstaller.Services
     {
         private const string InstallLocation64Bit =@"SOFTWARE\Wow6432Node\SDL\";
         private const string InstallLocation32Bit = @"SOFTWARE\SDL";
-        private const string CentrallProcessor = @"HARDWARE\DESCRIPTION\System\CentralProcessor\0";
         private readonly PluginPackageInfo _pluginPackage;
 
         private readonly Dictionary<string, string> _supportedStudioVersions = new Dictionary<string, string>
@@ -28,11 +27,8 @@ namespace Sdl.Community.SdlPluginInstaller.Services
         };
         private readonly List<StudioVersion> _installedStudioVersions; 
 
-        public bool Is64Bit { get; private set; }
-
         public StudioVersionService(PluginPackageInfo pluginPackage)
         {
-            Is64Bit = IsMachine64Bit();
             _installedStudioVersions = new List<StudioVersion>();
             _pluginPackage = pluginPackage;
 
@@ -51,7 +47,7 @@ namespace Sdl.Community.SdlPluginInstaller.Services
 
         private void Initialize()
         {
-            var registryPath = Is64Bit ? InstallLocation64Bit : InstallLocation32Bit;
+            var registryPath = Environment.Is64BitOperatingSystem ? InstallLocation64Bit : InstallLocation32Bit;
             var sdlRegistryKey = Registry.LocalMachine.OpenSubKey(registryPath);
 
             if (sdlRegistryKey == null) return;
@@ -60,17 +56,6 @@ namespace Sdl.Community.SdlPluginInstaller.Services
                 FindAndCreateStudioVersion(registryPath, supportedStudioVersion.Key, supportedStudioVersion.Value);
             }
             
-        }
-
-        private bool IsMachine64Bit()
-        {
-            var centralProcessorKey = Registry.LocalMachine.OpenSubKey(CentrallProcessor);
-            if (centralProcessorKey != null)
-            {
-                var value = (int)centralProcessorKey.GetValue("Platform Specific Field 1");
-                return value == 64;
-            }
-            return false;
         }
 
         private void FindAndCreateStudioVersion(string registryPath, string studioVersion, string studioPublicVersion)

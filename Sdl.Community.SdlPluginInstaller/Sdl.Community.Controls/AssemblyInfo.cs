@@ -18,7 +18,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 #endregion
 
-[assembly: AssemblyTitle("CristiPotlog.Controls")]
+[assembly: AssemblyTitle("Sdl.Community.Controls")]
 [assembly: AssemblyDescription("A Custom Controls Library for .NET")]
 [assembly: AssemblyProduct("Cristi Potlog's Controls for .NET")]
 [assembly: AssemblyCopyright("Copyright �2005, Cristi Potlog")]
@@ -28,4 +28,6 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
-[assembly: AssemblyVersion("0.9.2.0")]
+[assembly: AssemblyVersion("0.9.8.0")]
+[assembly: AssemblyFileVersion("0.9.8.0")]
+

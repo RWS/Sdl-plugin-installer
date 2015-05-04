@@ -45,10 +45,11 @@ namespace Sdl.Community.SdlPluginInstaller
                 string.Format(@"This wizard will guide you through the steps of installing {0} plugin",
                     _pluginPackageInfo.PluginName);
 
+
             textLicense.Rtf = Resources.SDL_OpenExchange_Terms_and_Conditions;
 
             var installedStudioVersions = _studioVersionService.GetInstalledStudioVersions();
-
+           
             studioVersionColumn.AspectGetter = delegate(object rowObject)
             {
                 var studioVersion = (StudioVersion)rowObject;
