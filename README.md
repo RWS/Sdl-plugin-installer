@@ -8,6 +8,8 @@ This is intended to be an universal installer for all SDL plugins. When this ins
 3. Installs plugins for multiple installed versions of SDL Studio - based on user selection.
 4. Remove previous installed versions of the plugin during installation.
 
+OpenExchange was updated to allow publishing plugins without wrapping them up in a zip file. This eliminates the need of creating a dedicated installer for your plugin as long as the user have this universal installer on their machine. The universal installer is intended to be distributed together with SDL Studio 2015 but this is yet to be confirmed.
+
 ## Releases
 
 You can get the latest versions from [here](https://github.com/sdl/Sdl-plugin-installer/releases).
