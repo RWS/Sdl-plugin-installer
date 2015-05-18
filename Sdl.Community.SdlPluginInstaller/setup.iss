@@ -5,7 +5,7 @@
 AppName=SDL plug-in installer
 AppPublisher=SDL Community Developers
 AppPublisherURL=https://community.sdl.com/
-AppVersion=0.9.9.0
+AppVersion=0.9.10.0
 DisableDirPage = yes
 DisableWelcomePage = yes
 AllowNoIcons = yes
@@ -19,6 +19,7 @@ Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.C
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Sdl.Community.SdlPluginInstaller.exe"; DestDir: "{app}"
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Sdl.Core.PluginFramework.PackageSupport.dll"; DestDir: "{app}"
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\ObjectListView.dll"; DestDir: "{app}"
+Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Nlog.dll"; DestDir: "{app}"
 Source: "c:\Work\Git\Sdl-plugin-installer\Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller\bin\Debug\Sdl.Community.SdlPluginInstaller.exe.config"; DestDir: "{app}"
  
 
@@ -27,3 +28,5 @@ Root: HKCR; Subkey: ".sdlplugin"; ValueType: string; ValueName: ""; ValueData: "
 Root: HKCR; Subkey: "Sdl Plugin Installer"; ValueType: string; ValueName: ""; ValueData: "Sdl plugin file type"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "Sdl Plugin Installer\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\Sdl.Community.SdlPluginInstaller.exe,0"
 Root: HKCR; Subkey: "Sdl Plugin Installer\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\Sdl.Community.SdlPluginInstaller.exe"" ""%1"""
+[UninstallDelete]
+Type: filesandordirs; Name: "{pf32}\SDL\SDL Community\SDL plugin installer"

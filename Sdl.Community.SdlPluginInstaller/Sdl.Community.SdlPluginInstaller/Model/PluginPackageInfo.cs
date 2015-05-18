@@ -19,7 +19,7 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         public static PluginPackageInfo CreatePluginPackageInfo(string pluginPackagePath)
         {
             var packageInfo = new PluginPackageInfo();
-            using (var pluginPackage = new PluginPackage(pluginPackagePath, FileAccess.ReadWrite))
+            using (var pluginPackage = new PluginPackage(pluginPackagePath, FileAccess.Read))
             {
                 packageInfo.PluginName = pluginPackage.PackageManifest.PlugInName;
                 packageInfo.Description = pluginPackage.PackageManifest.Description;

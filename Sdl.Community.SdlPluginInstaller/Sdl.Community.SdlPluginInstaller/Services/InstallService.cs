@@ -70,6 +70,7 @@ namespace Sdl.Community.SdlPluginInstaller.Services
                 var totalLength = fs.Length*StudioVersions.Count;
                 foreach (var studioVersion in StudioVersions)
                 {
+                    fs.Seek(0, SeekOrigin.Begin);
                     using (var br = new BinaryReader(fs))
                     {
                         var destination = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -86,7 +87,15 @@ namespace Sdl.Community.SdlPluginInstaller.Services
                                 byte[] buffer = br.ReadBytes(bytesPerChunk);
                                 bw.Write(buffer);
                                 bytesRead += bytesPerChunk;
-                                var progress = (int)(((double)bytesRead/totalLength)*100);
+                                var progress = 0;
+                                if (bytesRead > totalLength)
+                                {
+                                    progress = 100;
+                                }
+                                else
+                                {
+                                    progress = (int) (((double) bytesRead/totalLength)*100);
+                                }
                                 reportProgress(progress);
                             }
                         }
