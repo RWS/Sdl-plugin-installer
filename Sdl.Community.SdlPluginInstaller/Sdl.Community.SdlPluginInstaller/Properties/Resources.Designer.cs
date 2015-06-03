@@ -91,6 +91,15 @@ namespace Sdl.Community.SdlPluginInstaller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid package.
+        /// </summary>
+        internal static string Program_Main_Invalid_package {
+            get {
+                return ResourceManager.GetString("Program_Main_Invalid_package", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap sdl_logo {

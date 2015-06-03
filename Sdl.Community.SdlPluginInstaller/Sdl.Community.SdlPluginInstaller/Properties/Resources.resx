@@ -136,4 +136,7 @@
   <data name="InstallerForm_pluginInstallWizzard_BeforeSwitchPages_Please_select_Studio_version" xml:space="preserve">
     <value>Please select Studio version</value>
   </data>
+  <data name="Program_Main_Invalid_package" xml:space="preserve">
+    <value>Invalid package</value>
+  </data>
 </root>

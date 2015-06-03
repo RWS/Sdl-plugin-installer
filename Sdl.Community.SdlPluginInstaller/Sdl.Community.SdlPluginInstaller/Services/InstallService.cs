@@ -71,7 +71,7 @@ namespace Sdl.Community.SdlPluginInstaller.Services
                 foreach (var studioVersion in StudioVersions)
                 {
                     fs.Seek(0, SeekOrigin.Begin);
-                    using (var br = new BinaryReader(fs))
+                    var br = new BinaryReader(fs);
                     {
                         var destination = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                             @"SDL\SDL Trados Studio", studioVersion.ExecutableVersion.Major.ToString(),

@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CristiPotlog.Controls;
+using NLog;
 using Sdl.Community.Controls;
 using Sdl.Community.SdlPluginInstaller.Model;
 using Sdl.Community.SdlPluginInstaller.Properties;
@@ -24,17 +25,29 @@ namespace Sdl.Community.SdlPluginInstaller
         private readonly PluginPackageInfo _pluginPackageInfo;
         private readonly StudioVersionService _studioVersionService;
         private readonly InstallService _installService;
+        private readonly Logger _logger;
         private BackgroundWorker _bw;
         public InstallerForm()
         {
             InitializeComponent();
         }
 
-        public InstallerForm(string pluginPackagePath):this()
+        public InstallerForm(PluginPackageInfo pluginPackageInfo, Logger logger)
+            : this()
         {
-            _pluginPackageInfo = PluginPackageInfo.CreatePluginPackageInfo(pluginPackagePath);
-            _studioVersionService = new StudioVersionService(_pluginPackageInfo);
-            _installService = new InstallService(_pluginPackageInfo);
+            _logger = logger;
+            try
+            {
+                _pluginPackageInfo = pluginPackageInfo;
+                _studioVersionService = new StudioVersionService(_pluginPackageInfo);
+                _installService = new InstallService(_pluginPackageInfo);
+            }
+            catch (Exception exception)
+            {
+                _logger.ErrorException("Error constructing installer window",exception);
+                throw;
+            }
+           
         }
 
         protected override void OnLoad(EventArgs e)

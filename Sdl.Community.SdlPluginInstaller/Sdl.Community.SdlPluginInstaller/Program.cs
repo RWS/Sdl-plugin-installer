@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using Sdl.Community.SdlPluginInstaller.Model;
+using Sdl.Community.SdlPluginInstaller.Properties;
 
 namespace Sdl.Community.SdlPluginInstaller
 {
@@ -20,9 +22,23 @@ namespace Sdl.Community.SdlPluginInstaller
             InitializeLoggingConfiguration();
 
             if (args.Length == 0) return;
+            var logger = LogManager.GetLogger("log");
+
+
+            var pluginPackageInfo = PluginPackageInfo.CreatePluginPackageInfo(args[0]);
+
+            if (string.IsNullOrEmpty(pluginPackageInfo.PluginName))
+            {
+                MessageBox.Show(
+                    string.Format(
+                        "There is no data in the package manifest. Please ask the plugin developer to add relevant information to the package manifest."),
+                    Resources.Program_Main_Invalid_package, MessageBoxButtons.OK);
+                return;
+            }
+
 
             Application.ThreadException += Application_ThreadException;
-            Application.Run(new InstallerForm(args[0]));
+            Application.Run(new InstallerForm(pluginPackageInfo, logger));
         }
 
         private static void InitializeLoggingConfiguration()
