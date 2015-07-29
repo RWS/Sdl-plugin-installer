@@ -1,7 +1,7 @@
-#region Copyright ©2005, Cristi Potlog - All Rights Reserved
+#region Copyright Â©2005, Cristi Potlog - All Rights Reserved
 /* ------------------------------------------------------------------- *
 *                            Cristi Potlog                             *
-*                  Copyright ©2005 - All Rights reserved               *
+*                  Copyright Â©2005 - All Rights reserved               *
 *                                                                      *
 * THIS SOURCE CODE IS PROVIDED "AS IS" WITH NO WARRANTIES OF ANY KIND, *
 * EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        *
@@ -11,7 +11,7 @@
 *                                                                      *
 * THIS COPYRIGHT NOTICE MAY NOT BE REMOVED FROM THIS FILE.             *
 * ------------------------------------------------------------------- */
-#endregion Copyright ©2005, Cristi Potlog - All Rights Reserved
+#endregion Copyright Â©2005, Cristi Potlog - All Rights Reserved
 
 #region References
 using System;
@@ -160,6 +160,7 @@ namespace CristiPotlog.Controls
             // 
             // Wizard
             // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.buttonHelp);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonNext);
