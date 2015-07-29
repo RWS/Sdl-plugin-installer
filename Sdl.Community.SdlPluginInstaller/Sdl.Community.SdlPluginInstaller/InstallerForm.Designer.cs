@@ -225,6 +225,7 @@ namespace Sdl.Community.SdlPluginInstaller
             // 
             // checkIAgree
             // 
+            this.checkIAgree.AutoSize = true;
             this.checkIAgree.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkIAgree.Location = new System.Drawing.Point(12, 275);
             this.checkIAgree.Name = "checkIAgree";
