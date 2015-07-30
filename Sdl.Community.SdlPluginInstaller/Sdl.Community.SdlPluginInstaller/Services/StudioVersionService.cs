@@ -42,7 +42,8 @@ namespace Sdl.Community.SdlPluginInstaller.Services
         public List<StudioVersion> GetNotSupportedStudioVersions()
         {
             return _installedStudioVersions.Where(
-                x => x.ExecutableVersion.CompareTo(_pluginPackage.MinRequiredProductVersion) < 0).ToList();
+                x => x.ExecutableVersion.CompareTo(_pluginPackage.MinRequiredProductVersion) < 0
+                || (_pluginPackage.MaxRequiredProductVersion != null && x.ExecutableVersion.CompareTo(_pluginPackage.MaxRequiredProductVersion) > 0)).ToList();
         }
 
         private void Initialize()

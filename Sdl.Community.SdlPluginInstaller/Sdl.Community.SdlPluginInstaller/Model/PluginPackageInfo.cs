@@ -9,6 +9,7 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         public string Description { get; set; }
         public string PluginName { get; set; }
         public Version MinRequiredProductVersion { get; set; }
+        public Version MaxRequiredProductVersion { get; set; }
         public string Path { get; set; }
 
         private PluginPackageInfo()
@@ -25,6 +26,7 @@ namespace Sdl.Community.SdlPluginInstaller.Model
                 packageInfo.Description = pluginPackage.PackageManifest.Description;
                 packageInfo.Path = pluginPackage.FilePath;
                 packageInfo.MinRequiredProductVersion = pluginPackage.PackageManifest.MinRequiredProductVersion;
+                packageInfo.MaxRequiredProductVersion = pluginPackage.PackageManifest.MaxRequiredProductVersion;
             }
             return packageInfo;
         }
