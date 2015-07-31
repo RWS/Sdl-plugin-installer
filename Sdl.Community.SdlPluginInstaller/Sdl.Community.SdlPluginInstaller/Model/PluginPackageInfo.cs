@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using Sdl.Core.PluginFramework.PackageSupport;
-using Ionic.Zip;
+using System.IO.Packaging;
 
 namespace Sdl.Community.SdlPluginInstaller.Model
 {
@@ -19,7 +19,7 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         }
 
         /// <summary>
-        /// Uses DotNetZip library to return the maxversion from the manifest in the compressed sdlplugin file.
+        /// Uses System.IO.Packaging ZipPackage to return the maxversion from the manifest in the compressed sdlplugin file.
         /// </summary>
         /// <param name="pluginPackagePath">The path to the plugin file.</param>
         /// <returns>The version corresponding to the maxversion, or null if none is found.</returns>
@@ -27,26 +27,14 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         {
             string manifestFilename = "pluginpackage.manifest.xml";
             string contents = null;
-
-            using (MemoryStream ms = new MemoryStream())
+            Package archive = ZipPackage.Open(pluginPackagePath);
+            Uri manifestUri = new Uri("/" + manifestFilename, UriKind.Relative);
+            PackagePart manifest = archive.GetPart(manifestUri);
+            using(StreamReader reader = new StreamReader(manifest.GetStream()))
             {
-                using (ZipFile zip = new ZipFile(pluginPackagePath))
-                {
-                    foreach (ZipEntry e in zip)
-                    {
-                        if (e.FileName.Equals(manifestFilename))
-                        {
-                            e.Extract(ms);
-                            ms.Position = 0;
-                            using (StreamReader reader = new StreamReader(ms))
-                            {
-                                contents = reader.ReadToEnd();
-                            }
-                        }
-                    }
-                }
+                contents = reader.ReadToEnd();
             }
-
+            
             string result = null;
             System.Xml.XmlDocument xmlDoc = new System.Xml.XmlDocument();
             xmlDoc.LoadXml(contents);
