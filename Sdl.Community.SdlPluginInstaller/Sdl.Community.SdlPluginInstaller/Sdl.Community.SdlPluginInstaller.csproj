@@ -47,7 +47,7 @@
       <HintPath>..\packages\ObjectListView.Official.2.8.1\lib\net20\ObjectListView.dll</HintPath>
     </Reference>
     <Reference Include="Sdl.Core.PluginFramework.PackageSupport">
-      <HintPath>C:\Program Files (x86)\SDL\SDL Trados Studio\Studio3\Sdl.Core.PluginFramework.PackageSupport.dll</HintPath>
+      <HintPath>..\3rd Party\Sdl.Core.PluginFramework.PackageSupport.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,9 +97,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
