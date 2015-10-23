@@ -12,7 +12,7 @@ OpenExchange was updated to allow publishing plugins without wrapping them up in
 
 ## Releases
 
-You can get the latest versions from [here](https://github.com/sdl/Sdl-plugin-installer/releases).
+You can get the latest versions from [here](http://www.translationzone.com/openexchange/app/sdlplugininstaller-797.html#85394).
 
 ##Contribution
 
