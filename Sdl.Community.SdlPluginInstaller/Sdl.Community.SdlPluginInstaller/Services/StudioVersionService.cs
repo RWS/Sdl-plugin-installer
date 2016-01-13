@@ -17,7 +17,6 @@ namespace Sdl.Community.SdlPluginInstaller.Services
     {
         private const string InstallLocation64Bit =@"SOFTWARE\Wow6432Node\SDL\";
         private const string InstallLocation32Bit = @"SOFTWARE\SDL";
-        private readonly PluginPackageInfo _pluginPackage;
 
         private readonly Dictionary<string, string> _supportedStudioVersions = new Dictionary<string, string>
         {
@@ -27,10 +26,10 @@ namespace Sdl.Community.SdlPluginInstaller.Services
         };
         private readonly List<StudioVersion> _installedStudioVersions; 
 
-        public StudioVersionService(PluginPackageInfo pluginPackage)
+
+        public StudioVersionService()
         {
             _installedStudioVersions = new List<StudioVersion>();
-            _pluginPackage = pluginPackage;
 
             Initialize();
         }
@@ -39,11 +38,11 @@ namespace Sdl.Community.SdlPluginInstaller.Services
             return _installedStudioVersions;
         }
 
-        public List<StudioVersion> GetNotSupportedStudioVersions()
+        public List<StudioVersion> GetNotSupportedStudioVersions(PluginPackageInfo pluginPackage)
         {
             return _installedStudioVersions.Where(
-                x => x.ExecutableVersion.CompareTo(_pluginPackage.MinRequiredProductVersion) < 0
-                || (_pluginPackage.MaxRequiredProductVersion != null && x.ExecutableVersion.CompareTo(_pluginPackage.MaxRequiredProductVersion) > 0)).ToList();
+                x => x.ExecutableVersion.CompareTo(pluginPackage.MinRequiredProductVersion) < 0
+                || (pluginPackage.MaxRequiredProductVersion != null && x.ExecutableVersion.CompareTo(pluginPackage.MaxRequiredProductVersion) > 0)).ToList();
         }
 
         private void Initialize()
@@ -61,7 +60,7 @@ namespace Sdl.Community.SdlPluginInstaller.Services
 
         private void FindAndCreateStudioVersion(string registryPath, string studioVersion, string studioPublicVersion)
         {
-            var studioKey = Registry.LocalMachine.OpenSubKey(string.Format(@"{0}\{1}", registryPath, studioVersion));
+            var studioKey = Registry.LocalMachine.OpenSubKey($@"{registryPath}\{studioVersion}");
             if (studioKey != null)
             {
                 CreateStudioVersion(studioKey, studioVersion, studioPublicVersion);
@@ -84,8 +83,9 @@ namespace Sdl.Community.SdlPluginInstaller.Services
         }
 
         private static string GetStudioFullVersion(string installLocation)
+
         {
-            var assembly = Assembly.LoadFile(string.Format(@"{0}\{1}", installLocation, "SDLTradosStudio.exe"));
+            var assembly = Assembly.LoadFile($@"{installLocation}\{"SDLTradosStudio.exe"}");
             var versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             string fullVersion = versionInfo.FileVersion;
             return fullVersion;

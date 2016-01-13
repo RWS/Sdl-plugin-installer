@@ -21,24 +21,31 @@ namespace Sdl.Community.SdlPluginInstaller
             Application.SetCompatibleTextRenderingDefault(false);
             InitializeLoggingConfiguration();
 
-            if (args.Length == 0) return;
             var logger = LogManager.GetLogger("log");
 
-
-            var pluginPackageInfo = PluginPackageInfo.CreatePluginPackageInfo(args[0]);
-
-            if (string.IsNullOrEmpty(pluginPackageInfo.PluginName))
+            if (args.Length == 0)
             {
-                MessageBox.Show(
-                    string.Format(
-                        "There is no data in the package manifest. Please ask the plugin developer to add relevant information to the package manifest."),
-                    Resources.Program_Main_Invalid_package, MessageBoxButtons.OK);
-                return;
+               Application.Run(new PluginForm(logger));
             }
 
 
-            Application.ThreadException += Application_ThreadException;
-            Application.Run(new InstallerForm(pluginPackageInfo, logger));
+            else
+            {
+                var pluginPackageInfo = PluginPackageInfo.CreatePluginPackageInfo(args[0]);
+
+                if (string.IsNullOrEmpty(pluginPackageInfo.PluginName))
+                {
+                    MessageBox.Show(
+                        string.Format(
+                            "There is no data in the package manifest. Please ask the plugin developer to add relevant information to the package manifest."),
+                        Resources.Program_Main_Invalid_package, MessageBoxButtons.OK);
+                    return;
+                }
+
+
+                Application.ThreadException += Application_ThreadException;
+                Application.Run(new InstallerForm(pluginPackageInfo, logger));
+            }
         }
 
         private static void InitializeLoggingConfiguration()
@@ -63,7 +70,7 @@ namespace Sdl.Community.SdlPluginInstaller
         {
             var logger = LogManager.GetLogger("log");
 
-            logger.ErrorException("Unhandled exception", e.Exception);
+            logger.Error(e.Exception, "Unhandled exception");
 
         }
     }

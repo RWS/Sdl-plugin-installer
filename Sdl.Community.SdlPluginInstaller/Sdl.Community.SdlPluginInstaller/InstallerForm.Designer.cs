@@ -50,6 +50,7 @@ namespace Sdl.Community.SdlPluginInstaller
             this.licensePage = new Sdl.Community.Controls.WizardPage();
             this.textLicense = new System.Windows.Forms.RichTextBox();
             this.checkIAgree = new System.Windows.Forms.CheckBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.pluginInstallWizzard.SuspendLayout();
             this.taskRunnerPage.SuspendLayout();
             this.installedStudioVersionsPage.SuspendLayout();
@@ -229,7 +230,7 @@ namespace Sdl.Community.SdlPluginInstaller
             this.checkIAgree.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkIAgree.Location = new System.Drawing.Point(12, 275);
             this.checkIAgree.Name = "checkIAgree";
-            this.checkIAgree.Size = new System.Drawing.Size(288, 16);
+            this.checkIAgree.Size = new System.Drawing.Size(252, 18);
             this.checkIAgree.TabIndex = 3;
             this.checkIAgree.Text = "I agree with this license\'s terms and conditions.";
             this.checkIAgree.CheckedChanged += new System.EventHandler(this.checkIAgree_CheckedChanged);
@@ -255,6 +256,7 @@ namespace Sdl.Community.SdlPluginInstaller
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkStudioVersions)).EndInit();
             this.licensePage.ResumeLayout(false);
+            this.licensePage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -277,6 +279,7 @@ namespace Sdl.Community.SdlPluginInstaller
         private BrightIdeasSoftware.HeaderFormatStyle headerFormatStyle1;
         private BrightIdeasSoftware.ObjectListView chkStudioVersions;
         private BrightIdeasSoftware.OLVColumn studioVersionColumn;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

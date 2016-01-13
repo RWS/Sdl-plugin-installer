@@ -39,12 +39,12 @@ namespace Sdl.Community.SdlPluginInstaller
             try
             {
                 _pluginPackageInfo = pluginPackageInfo;
-                _studioVersionService = new StudioVersionService(_pluginPackageInfo);
+                _studioVersionService = new StudioVersionService();
                 _installService = new InstallService(_pluginPackageInfo);
             }
             catch (Exception exception)
             {
-                _logger.ErrorException("Error constructing installer window",exception);
+                _logger.Error(exception, "Error constructing installer window");
                 throw;
             }
            
@@ -75,7 +75,7 @@ namespace Sdl.Community.SdlPluginInstaller
             };
 
             chkStudioVersions.SetObjects(installedStudioVersions);
-            var versionsNotSupportedByPlugin = _studioVersionService.GetNotSupportedStudioVersions();
+            var versionsNotSupportedByPlugin = _studioVersionService.GetNotSupportedStudioVersions(_pluginPackageInfo);
             chkStudioVersions.DisableObjects(versionsNotSupportedByPlugin);
 
             chkStudioVersions.BuildList(true);
