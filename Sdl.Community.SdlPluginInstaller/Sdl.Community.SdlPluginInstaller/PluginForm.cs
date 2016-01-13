@@ -73,6 +73,7 @@ namespace Sdl.Community.SdlPluginInstaller
                 authorColumn.AspectGetter = delegate (object rowObject)
                 {
                     var pluginObject = (PluginPackageInfo)rowObject;
+                    
                     if (pluginObject.Author == null)
                     {
                         return "N/A";
@@ -81,9 +82,10 @@ namespace Sdl.Community.SdlPluginInstaller
                     {
                         return pluginObject.Author;
                     }
-
-
                 };
+
+                installedPluginListView.CellToolTipShowing += CellToolTipShowing;
+                
                 installedPluginListView.RowHeight = 50;
                 installedPluginListView.FullRowSelect = true;
                 DescribedTaskRenderer renderer = new DescribedTaskRenderer
@@ -120,18 +122,43 @@ namespace Sdl.Community.SdlPluginInstaller
             }
         }
 
-        private void CheckForProcess(PluginPackageInfo pluginPackageInfo)
+        public void CellToolTipShowing(object sender, ToolTipShowingEventArgs e)
         {
-            _installService = new InstallService(pluginPackageInfo);
+            if (((ObjectListView) sender).HotColumnIndex == 0)
+            {
+                var index = ((ObjectListView)sender).HotRowIndex;
+                var plugin = _installedPlugins[index];
+                e.Text = plugin.PluginName;
+            }
+            if (((ObjectListView) sender).HotColumnIndex == 2)
+            {
+                var index = ((ObjectListView)sender).HotRowIndex;
+                var plugin = _installedPlugins[index];
+                e.Text = plugin.Author;
+            }
+            
+        }
+
+        private void CheckForProcess(PluginPackageInfo plugInToUninstall, int rowIndex)
+        {
+            _installService = new InstallService(plugInToUninstall);
 
             var processes = _installService.GetStudioProcesses();
-            if (processes.Count > 0)
+            if (processes.Count <= 0)
+            {
+                _uninstallService.UninstallPlugin(plugInToUninstall);
+
+
+                installedPluginListView.RemoveObject(plugInToUninstall);
+                _installedPlugins.RemoveRange(rowIndex, 1);
+            }
+            else
             {
                 using (var processesForm = new Processes(processes))
                 {
                     processesForm.ShowDialog();
                 }
-  
+                
             }
         }
         private void InstalledPluginListView_ButtonClick(object sender, CellClickEventArgs e)
@@ -141,13 +168,9 @@ namespace Sdl.Community.SdlPluginInstaller
             var plugInToUninstall = _installedPlugins[rowIndex];
 
             //check for Studio processes
-            CheckForProcess(plugInToUninstall);
+            CheckForProcess(plugInToUninstall,rowIndex);
 
-            _uninstallService.UninstallPlugin(plugInToUninstall);
-
-
-            installedPluginListView.RemoveObject(plugInToUninstall);
-            _installedPlugins.RemoveRange(rowIndex,1);
+           
 
         }
 

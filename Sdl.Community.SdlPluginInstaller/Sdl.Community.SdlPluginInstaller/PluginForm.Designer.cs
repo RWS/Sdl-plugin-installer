@@ -65,7 +65,7 @@
             // 
             // descriptionHeaderLbl
             // 
-            this.descriptionHeaderLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.descriptionHeaderLbl.Cursor = System.Windows.Forms.Cursors.Default;
             this.descriptionHeaderLbl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descriptionHeaderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionHeaderLbl.Location = new System.Drawing.Point(77, 0);
@@ -131,6 +131,7 @@
             // authorColumn
             // 
             this.authorColumn.Text = "Author";
+            this.authorColumn.Width = 186;
             // 
             // minStudioVersionColumn
             // 
@@ -176,8 +177,7 @@
             // 
             // PluginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(709, 413);
             this.Controls.Add(this.mainTableLayoutPanel);
