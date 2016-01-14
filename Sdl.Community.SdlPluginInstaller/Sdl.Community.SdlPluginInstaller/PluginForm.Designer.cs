@@ -135,8 +135,8 @@
             // 
             // minStudioVersionColumn
             // 
-            this.minStudioVersionColumn.AspectName = "MinRequiredProductVersion";
-            this.minStudioVersionColumn.Text = "MinStudioVersion";
+            this.minStudioVersionColumn.AspectName = "Minimum supported Studio version";
+            this.minStudioVersionColumn.Text = "Minimum supported Studio version";
             // 
             // uninstallColumn
             // 
@@ -184,6 +184,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(725, 451);
             this.Name = "PluginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PluginForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.mainTableLayoutPanel.ResumeLayout(false);

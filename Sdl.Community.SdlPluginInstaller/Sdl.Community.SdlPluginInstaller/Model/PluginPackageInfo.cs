@@ -30,7 +30,7 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         {
             string manifestFilename = "pluginpackage.manifest.xml";
             string contents;
-            using (Package archive = Package.Open(pluginPackagePath))
+            using (Package archive = Package.Open(pluginPackagePath, FileMode.Open))
             {
                 Uri manifestUri = new Uri("/" + manifestFilename, UriKind.Relative);
                 PackagePart manifest = archive.GetPart(manifestUri);
