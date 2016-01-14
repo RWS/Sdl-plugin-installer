@@ -112,7 +112,7 @@ namespace Sdl.Community.SdlPluginInstaller
                 uninstallColumn.AspectGetter = rowObject => "Uninstall";
                 
                 descriptionHeaderLbl.Text =
-                    @"From this screen you are able to see what plugins you have installed, also you can uninstall them.";
+                    @"All installed plugins are listed below.  Ensure Studio is closed and then click the Uninstall button for the plugins you wish to remove.  Plugins that require Administrator rights for installation will not be listed unless you run this uninstaller with Admin rights.";
 
                 //initialize list view with plugins for Studio 2015
                 InitializeListView(_installedStudioVersions[0]);
@@ -123,9 +123,9 @@ namespace Sdl.Community.SdlPluginInstaller
                     
                     var adminRightsLabel = new Label
                     {
-                        Text = @"Administrator rights required",
+                        Text = @"There are installed plugins requiring Administrator rights.",
                         ForeColor = Color.Red,
-                        Bounds = new Rectangle(0, 0, 150, 15),
+                        Bounds = new Rectangle(0, 0, 300, 15),
                         Anchor = AnchorStyles.Left
                     };
                     labelsPanel.Controls.Add(adminRightsLabel);
