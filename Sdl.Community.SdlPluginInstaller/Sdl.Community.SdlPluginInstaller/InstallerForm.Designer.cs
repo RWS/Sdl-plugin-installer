@@ -68,11 +68,11 @@ namespace Sdl.Community.SdlPluginInstaller
             // 
             // pluginInstallWizzard
             // 
+            this.pluginInstallWizzard.Controls.Add(this.installedStudioVersionsPage);
+            this.pluginInstallWizzard.Controls.Add(this.licensePage);
             this.pluginInstallWizzard.Controls.Add(this.welcomePage);
             this.pluginInstallWizzard.Controls.Add(this.finalPage);
             this.pluginInstallWizzard.Controls.Add(this.taskRunnerPage);
-            this.pluginInstallWizzard.Controls.Add(this.installedStudioVersionsPage);
-            this.pluginInstallWizzard.Controls.Add(this.licensePage);
             this.pluginInstallWizzard.HeaderImage = global::Sdl.Community.SdlPluginInstaller.Properties.Resources.OpenExchange;
             this.pluginInstallWizzard.Location = new System.Drawing.Point(0, 0);
             this.pluginInstallWizzard.Name = "pluginInstallWizzard";
@@ -141,7 +141,7 @@ namespace Sdl.Community.SdlPluginInstaller
             this.installedStudioVersionsPage.Description = "Please select for which Studio versions you want to install the plugin";
             this.installedStudioVersionsPage.Location = new System.Drawing.Point(0, 0);
             this.installedStudioVersionsPage.Name = "installedStudioVersionsPage";
-            this.installedStudioVersionsPage.Size = new System.Drawing.Size(428, 208);
+            this.installedStudioVersionsPage.Size = new System.Drawing.Size(466, 307);
             this.installedStudioVersionsPage.TabIndex = 12;
             this.installedStudioVersionsPage.Title = "Installed Studio versions";
             // 
@@ -171,13 +171,17 @@ namespace Sdl.Community.SdlPluginInstaller
             // chkStudioVersions
             // 
             this.chkStudioVersions.AllColumns.Add(this.studioVersionColumn);
+            this.chkStudioVersions.CellEditUseWholeCell = false;
             this.chkStudioVersions.CheckBoxes = true;
             this.chkStudioVersions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.studioVersionColumn});
+            this.chkStudioVersions.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkStudioVersions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chkStudioVersions.FullRowSelect = true;
             this.chkStudioVersions.HasCollapsibleGroups = false;
             this.chkStudioVersions.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.chkStudioVersions.HighlightBackgroundColor = System.Drawing.Color.Empty;
+            this.chkStudioVersions.HighlightForegroundColor = System.Drawing.Color.Empty;
             this.chkStudioVersions.Location = new System.Drawing.Point(0, 0);
             this.chkStudioVersions.Name = "chkStudioVersions";
             this.chkStudioVersions.Size = new System.Drawing.Size(215, 207);
@@ -188,7 +192,6 @@ namespace Sdl.Community.SdlPluginInstaller
             // studioVersionColumn
             // 
             this.studioVersionColumn.AspectName = "";
-            this.studioVersionColumn.CheckBoxes = true;
             this.studioVersionColumn.FillsFreeSpace = true;
             this.studioVersionColumn.Groupable = false;
             this.studioVersionColumn.IsEditable = false;
@@ -212,7 +215,7 @@ namespace Sdl.Community.SdlPluginInstaller
     "erms and conditions.";
             this.licensePage.Location = new System.Drawing.Point(0, 0);
             this.licensePage.Name = "licensePage";
-            this.licensePage.Size = new System.Drawing.Size(428, 208);
+            this.licensePage.Size = new System.Drawing.Size(466, 307);
             this.licensePage.TabIndex = 11;
             this.licensePage.Title = "License Agreement";
             // 
