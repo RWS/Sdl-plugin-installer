@@ -79,6 +79,7 @@ namespace Sdl.Community.SdlPluginInstaller
             chkStudioVersions.DisableObjects(versionsNotSupportedByPlugin);
 
             chkStudioVersions.BuildList(true);
+            appDataBtn.Checked = true;
             _bw = new BackgroundWorker { WorkerSupportsCancellation = true, WorkerReportsProgress = true };
             _bw.ProgressChanged += bw_ProgressChanged;
             _bw.DoWork += bw_DoWork;
@@ -189,11 +190,8 @@ namespace Sdl.Community.SdlPluginInstaller
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             var backgroundWorker = sender as BackgroundWorker;
-            Environment.SpecialFolder destinationFolder= new Environment.SpecialFolder();
-            if (appDataBtn.Checked)
-            {
-                destinationFolder = Environment.SpecialFolder.ApplicationData;
-            }else if (localAppDataBtn.Checked)
+            var destinationFolder= Environment.SpecialFolder.ApplicationData;
+            if (localAppDataBtn.Checked)
             {
                 destinationFolder = Environment.SpecialFolder.LocalApplicationData;
             }else if (commonAppDataBtn.Checked)
