@@ -84,6 +84,18 @@ namespace Sdl.Community.SdlPluginInstaller
             _bw.ProgressChanged += bw_ProgressChanged;
             _bw.DoWork += bw_DoWork;
             _bw.RunWorkerCompleted += bw_RunWorkerCompleted;
+
+
+            //tooltips for radio buttons
+
+            var appDataToolTip = new ToolTip();
+            appDataToolTip.SetToolTip(appDataBtn, "This location should be used if you want the plugin to be available to all your domain machines.");
+
+            var localAppDataToolTip = new ToolTip();
+            localAppDataToolTip.SetToolTip(localAppDataBtn, "This location should be used if you want to install the plugin only on this machine.");
+
+            var commonToolTip = new ToolTip();
+            commonToolTip.SetToolTip(commonAppDataBtn, "This location should be used only if you are installing as an IT administrator.");
         }
 
         private void checkIAgree_CheckedChanged(object sender, EventArgs e)
