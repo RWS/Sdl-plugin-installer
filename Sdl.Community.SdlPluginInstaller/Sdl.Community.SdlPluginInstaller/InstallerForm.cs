@@ -92,6 +92,7 @@ namespace Sdl.Community.SdlPluginInstaller
 
         private void pluginInstallWizzard_BeforeSwitchPages(object sender, Wizard.BeforeSwitchPagesEventArgs e)
         {
+            
             // get wizard page already displayed
 			WizardPage oldPage = this.pluginInstallWizzard.Pages[e.OldIndex];
 
@@ -188,8 +189,20 @@ namespace Sdl.Community.SdlPluginInstaller
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             var backgroundWorker = sender as BackgroundWorker;
+            Environment.SpecialFolder destinationFolder= new Environment.SpecialFolder();
+            if (appDataBtn.Checked)
+            {
+                destinationFolder = Environment.SpecialFolder.ApplicationData;
+            }else if (localAppDataBtn.Checked)
+            {
+                destinationFolder = Environment.SpecialFolder.LocalApplicationData;
+            }else if (commonAppDataBtn.Checked)
+            {
+                destinationFolder = Environment.SpecialFolder.CommonApplicationData;
+            }
+
             if (backgroundWorker != null)
-                _installService.DeployPackage(backgroundWorker.ReportProgress);
+                _installService.DeployPackage(backgroundWorker.ReportProgress,destinationFolder);
 
         }
 
