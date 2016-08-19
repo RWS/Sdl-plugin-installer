@@ -40,6 +40,10 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.1.9.71\lib\net40\CommandLine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.2.3\lib\net40\NLog.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +75,7 @@
     <Compile Include="InstallerForm.Designer.cs">
       <DependentUpon>InstallerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\DeployOptions.cs" />
     <Compile Include="Model\PluginPackageInfo.cs" />
     <Compile Include="Model\StudioVersion.cs" />
     <Compile Include="PluginForm.cs">
@@ -120,7 +125,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\SDL OpenExchange Terms and Conditions.rtf" />
+    <None Include="Resources\%28160627%29 SDL AppStore End User Terms  Conditions_July 29 2016 Final.rtf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

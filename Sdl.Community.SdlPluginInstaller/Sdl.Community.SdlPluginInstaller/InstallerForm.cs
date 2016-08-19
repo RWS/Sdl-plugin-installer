@@ -59,7 +59,7 @@ namespace Sdl.Community.SdlPluginInstaller
                     _pluginPackageInfo.PluginName);
 
 
-            textLicense.Rtf = Resources.SDL_OpenExchange_Terms_and_Conditions;
+            textLicense.Rtf = Resources._160627__SDL_AppStore_End_User_Terms__Conditions_July_29_2016_Final;
 
             var installedStudioVersions = _studioVersionService.GetInstalledStudioVersions();
             if (installedStudioVersions.Count == 0)
@@ -89,13 +89,13 @@ namespace Sdl.Community.SdlPluginInstaller
             //tooltips for radio buttons
 
             var appDataToolTip = new ToolTip();
-            appDataToolTip.SetToolTip(appDataBtn, "This location should be used if you want the plugin to be available to all your domain machines.");
+            appDataToolTip.SetToolTip(appDataBtn, "Install only for the current user");
 
             var localAppDataToolTip = new ToolTip();
             localAppDataToolTip.SetToolTip(localAppDataBtn, "This location should be used if you want to install the plugin only on this machine.");
 
             var commonToolTip = new ToolTip();
-            commonToolTip.SetToolTip(commonAppDataBtn, "This location should be used only if you are installing as an IT administrator.");
+            commonToolTip.SetToolTip(commonAppDataBtn, "Install for all users of this local machine (requires Administrator rights)");
         }
 
         private void checkIAgree_CheckedChanged(object sender, EventArgs e)
