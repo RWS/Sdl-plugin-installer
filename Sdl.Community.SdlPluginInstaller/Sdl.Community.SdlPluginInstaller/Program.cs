@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using CommandLine;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -11,6 +13,7 @@ namespace Sdl.Community.SdlPluginInstaller
 {
     static class Program
     {
+        private static readonly DeployOptions Dpo = new DeployOptions();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -28,24 +31,48 @@ namespace Sdl.Community.SdlPluginInstaller
                Application.Run(new PluginForm(logger));
             }
 
-
             else
             {
-                var pluginPackageInfo = PluginPackageInfo.CreatePluginPackageInfo(args[0]);
+                var parser = new Parser();
 
-                if (string.IsNullOrEmpty(pluginPackageInfo.PluginName))
+                if (parser.ParseArguments(args, Dpo))
                 {
-                    MessageBox.Show(
-                        string.Format(
-                            "There is no data in the package manifest. Please ask the plugin developer to add relevant information to the package manifest."),
-                        Resources.Program_Main_Invalid_package, MessageBoxButtons.OK);
-                    return;
+                    var processStartInfo = new ProcessStartInfo("Sdl.Community.SdlPluginInstaller.Cmd.exe",
+                        string.Join(" ", args))
+                    {UseShellExecute = false};
+
+                    var process = new Process
+                    {
+                        StartInfo = processStartInfo,
+
+                    };
+                    process.Start();
+                }
+                else
+                {
+                    var pluginPackageInfo = PluginPackageInfo.CreatePluginPackageInfo(args[0]);
+
+                    if (string.IsNullOrEmpty(pluginPackageInfo.PluginName))
+                    {
+                        MessageBox.Show(
+                            string.Format(
+                                "There is no data in the package manifest. Please ask the plugin developer to add relevant information to the package manifest."),
+                            Resources.Program_Main_Invalid_package, MessageBoxButtons.OK);
+                        return;
+                    }
+
+
+                    Application.ThreadException += Application_ThreadException;
+                    Application.Run(new InstallerForm(pluginPackageInfo, logger));
                 }
 
-
-                Application.ThreadException += Application_ThreadException;
-                Application.Run(new InstallerForm(pluginPackageInfo, logger));
+            
             }
+            
+                
+              
+
+            
         }
 
         private static void InitializeLoggingConfiguration()

@@ -59,7 +59,7 @@ namespace Sdl.Community.SdlPluginInstaller
                     _pluginPackageInfo.PluginName);
 
 
-            textLicense.Rtf = Resources.SDL_OpenExchange_Terms_and_Conditions;
+            textLicense.Rtf = Resources._160627__SDL_AppStore_End_User_Terms__Conditions_July_29_2016_Final;
 
             var installedStudioVersions = _studioVersionService.GetInstalledStudioVersions();
             if (installedStudioVersions.Count == 0)
@@ -79,10 +79,23 @@ namespace Sdl.Community.SdlPluginInstaller
             chkStudioVersions.DisableObjects(versionsNotSupportedByPlugin);
 
             chkStudioVersions.BuildList(true);
+            appDataBtn.Checked = true;
             _bw = new BackgroundWorker { WorkerSupportsCancellation = true, WorkerReportsProgress = true };
             _bw.ProgressChanged += bw_ProgressChanged;
             _bw.DoWork += bw_DoWork;
             _bw.RunWorkerCompleted += bw_RunWorkerCompleted;
+
+
+            //tooltips for radio buttons
+
+            var appDataToolTip = new ToolTip();
+            appDataToolTip.SetToolTip(appDataBtn, "Install only for the current user");
+
+            var localAppDataToolTip = new ToolTip();
+            localAppDataToolTip.SetToolTip(localAppDataBtn, "This location should be used if you want to install the plugin only on this machine.");
+
+            var commonToolTip = new ToolTip();
+            commonToolTip.SetToolTip(commonAppDataBtn, "Install for all users of this local machine (requires Administrator rights)");
         }
 
         private void checkIAgree_CheckedChanged(object sender, EventArgs e)
@@ -92,6 +105,7 @@ namespace Sdl.Community.SdlPluginInstaller
 
         private void pluginInstallWizzard_BeforeSwitchPages(object sender, Wizard.BeforeSwitchPagesEventArgs e)
         {
+            
             // get wizard page already displayed
 			WizardPage oldPage = this.pluginInstallWizzard.Pages[e.OldIndex];
 
@@ -188,8 +202,17 @@ namespace Sdl.Community.SdlPluginInstaller
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             var backgroundWorker = sender as BackgroundWorker;
+            var destinationFolder= Environment.SpecialFolder.ApplicationData;
+            if (localAppDataBtn.Checked)
+            {
+                destinationFolder = Environment.SpecialFolder.LocalApplicationData;
+            }else if (commonAppDataBtn.Checked)
+            {
+                destinationFolder = Environment.SpecialFolder.CommonApplicationData;
+            }
+
             if (backgroundWorker != null)
-                _installService.DeployPackage(backgroundWorker.ReportProgress);
+                _installService.DeployPackage(backgroundWorker.ReportProgress,destinationFolder);
 
         }
 

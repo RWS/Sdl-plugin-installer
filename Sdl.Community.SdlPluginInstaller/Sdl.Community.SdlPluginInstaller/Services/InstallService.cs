@@ -61,7 +61,7 @@ namespace Sdl.Community.SdlPluginInstaller.Services
             }
         }
 
-        public void DeployPackage(Action<int> reportProgress)
+        public void DeployPackage(Action<int> reportProgress,Environment.SpecialFolder folder)
         {
             var bytesRead = 0;
             const int bytesPerChunk = 1000;
@@ -73,12 +73,15 @@ namespace Sdl.Community.SdlPluginInstaller.Services
                     fs.Seek(0, SeekOrigin.Begin);
                     var br = new BinaryReader(fs);
                     {
-                        var destination = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                            @"SDL\SDL Trados Studio", studioVersion.ExecutableVersion.Major.ToString(),
-                            @"Plugins\Packages",
-                            string.Format("{0}.sdlplugin", _pluginPackageInfo.PluginName));
+                        
+                            var path =
+                                Path.Combine(Environment.GetFolderPath(folder),
+                                    @"SDL\SDL Trados Studio", studioVersion.ExecutableVersion.Major.ToString(),
+                                    @"Plugins\Packages",
+                                    string.Format("{0}.sdlplugin", _pluginPackageInfo.PluginName));
+                       
 
-                        using (var fsDest = new FileStream(destination, FileMode.Create))
+                        using (var fsDest = new FileStream(path, FileMode.Create))
                         {
                             var bw = new BinaryWriter(fsDest);
 

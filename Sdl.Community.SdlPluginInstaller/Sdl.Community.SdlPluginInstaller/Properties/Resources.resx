@@ -127,9 +127,6 @@
   <data name="sdl-logo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sdl-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SDL_OpenExchange_Terms_and_Conditions" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SDL OpenExchange Terms and Conditions.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="InstallerForm_pluginInstallWizzard_BeforeSwitchPages_Please_select_at_least_one_Studio_version_" xml:space="preserve">
     <value>Please select at least one Studio version.</value>
   </data>
@@ -138,5 +135,8 @@
   </data>
   <data name="Program_Main_Invalid_package" xml:space="preserve">
     <value>Invalid package</value>
+  </data>
+  <data name="_160627__SDL_AppStore_End_User_Terms__Conditions_July_29_2016_Final" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\(160627) sdl appstore end user terms  conditions_july 29 2016 final.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>
