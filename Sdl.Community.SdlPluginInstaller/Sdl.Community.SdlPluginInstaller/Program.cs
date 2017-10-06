@@ -20,6 +20,7 @@ namespace Sdl.Community.SdlPluginInstaller
         [STAThread]
         static void Main(string[] args)
         {
+            WindowDPIAwarness.SetPerMonitorDpiAwareness(ProcessDpiAwareness.Process_DPI_Unaware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             InitializeLoggingConfiguration();

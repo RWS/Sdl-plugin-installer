@@ -20,9 +20,11 @@ namespace Sdl.Community.SdlPluginInstaller.Services
 
         private readonly Dictionary<string, string> _supportedStudioVersions = new Dictionary<string, string>
         {
+            {"Studio1", "SDL Studio 2009"},
             {"Studio2", "SDL Studio 2011"},
             {"Studio3", "SDL Studio 2014"},
-            {"Studio4", "SDL Studio 2015"}
+            {"Studio4", "SDL Studio 2015"},
+            {"Studio5", "SDL Studio 2017"}
         };
         private readonly List<StudioVersion> _installedStudioVersions; 
 
@@ -69,17 +71,20 @@ namespace Sdl.Community.SdlPluginInstaller.Services
 
         private void CreateStudioVersion(RegistryKey studioKey,string version, string publicVersion)
         {
-            var installLocation = studioKey.GetValue("InstallLocation").ToString();
-            var fullVersion = GetStudioFullVersion(installLocation);
-
-
-            _installedStudioVersions.Add(new StudioVersion()
+            if (studioKey.GetValue("InstallLocation") != null)
             {
-                Version = version,
-                PublicVersion = publicVersion,
-                InstallPath = installLocation,
-                ExecutableVersion = new Version(fullVersion)
-            });
+                var installLocation = studioKey.GetValue("InstallLocation").ToString();
+                var fullVersion = GetStudioFullVersion(installLocation);
+
+
+                _installedStudioVersions.Add(new StudioVersion()
+                {
+                    Version = version,
+                    PublicVersion = publicVersion,
+                    InstallPath = installLocation,
+                    ExecutableVersion = new Version(fullVersion)
+                });
+            }
         }
 
         private static string GetStudioFullVersion(string installLocation)

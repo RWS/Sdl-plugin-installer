@@ -41,7 +41,13 @@ namespace Sdl.Community.SdlPluginInstaller
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkStudioVersions = new BrightIdeasSoftware.ObjectListView();
             this.studioVersionColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.selectLbl = new System.Windows.Forms.Label();
+            this.folderGroupBox = new System.Windows.Forms.GroupBox();
+            this.commonAppDataBtn = new System.Windows.Forms.RadioButton();
+            this.localAppDataBtn = new System.Windows.Forms.RadioButton();
+            this.appDataBtn = new System.Windows.Forms.RadioButton();
             this.licensePage = new Sdl.Community.Controls.WizardPage();
             this.textLicense = new System.Windows.Forms.RichTextBox();
             this.checkIAgree = new System.Windows.Forms.CheckBox();
@@ -51,20 +57,14 @@ namespace Sdl.Community.SdlPluginInstaller
             this.labelProgress = new System.Windows.Forms.Label();
             this.progressLongTask = new System.Windows.Forms.ProgressBar();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.selectLbl = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.folderGroupBox = new System.Windows.Forms.GroupBox();
-            this.appDataBtn = new System.Windows.Forms.RadioButton();
-            this.localAppDataBtn = new System.Windows.Forms.RadioButton();
-            this.commonAppDataBtn = new System.Windows.Forms.RadioButton();
             this.pluginInstallWizzard.SuspendLayout();
             this.installedStudioVersionsPage.SuspendLayout();
             this.tableLayoutPanelStudioVersions.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkStudioVersions)).BeginInit();
+            this.folderGroupBox.SuspendLayout();
             this.licensePage.SuspendLayout();
             this.taskRunnerPage.SuspendLayout();
-            this.folderGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerFormatStyle1
@@ -75,11 +75,11 @@ namespace Sdl.Community.SdlPluginInstaller
             // 
             // pluginInstallWizzard
             // 
-            this.pluginInstallWizzard.Controls.Add(this.installedStudioVersionsPage);
-            this.pluginInstallWizzard.Controls.Add(this.licensePage);
             this.pluginInstallWizzard.Controls.Add(this.welcomePage);
             this.pluginInstallWizzard.Controls.Add(this.finalPage);
             this.pluginInstallWizzard.Controls.Add(this.taskRunnerPage);
+            this.pluginInstallWizzard.Controls.Add(this.installedStudioVersionsPage);
+            this.pluginInstallWizzard.Controls.Add(this.licensePage);
             this.pluginInstallWizzard.HeaderImage = global::Sdl.Community.SdlPluginInstaller.Properties.Resources.OpenExchange;
             this.pluginInstallWizzard.Location = new System.Drawing.Point(0, 0);
             this.pluginInstallWizzard.Name = "pluginInstallWizzard";
@@ -102,7 +102,7 @@ namespace Sdl.Community.SdlPluginInstaller
             this.installedStudioVersionsPage.Description = "Please select for which Studio versions you want to install the plugin";
             this.installedStudioVersionsPage.Location = new System.Drawing.Point(0, 0);
             this.installedStudioVersionsPage.Name = "installedStudioVersionsPage";
-            this.installedStudioVersionsPage.Size = new System.Drawing.Size(466, 307);
+            this.installedStudioVersionsPage.Size = new System.Drawing.Size(428, 208);
             this.installedStudioVersionsPage.TabIndex = 12;
             this.installedStudioVersionsPage.Title = "Installed Studio versions";
             // 
@@ -162,6 +162,15 @@ namespace Sdl.Community.SdlPluginInstaller
             this.studioVersionColumn.IsEditable = false;
             this.studioVersionColumn.Width = 151;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(3, 90);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 64);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Folde";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -172,6 +181,61 @@ namespace Sdl.Community.SdlPluginInstaller
             this.label2.Text = "All Studio version installed on the machine are displayed on the right list. Stud" +
     "io versions that are not compatible with the plugin will be grayed out.";
             // 
+            // selectLbl
+            // 
+            this.selectLbl.AutoSize = true;
+            this.selectLbl.Location = new System.Drawing.Point(3, 106);
+            this.selectLbl.Name = "selectLbl";
+            this.selectLbl.Size = new System.Drawing.Size(215, 26);
+            this.selectLbl.TabIndex = 4;
+            this.selectLbl.Text = "Please select the folder where the plugin will be installed";
+            // 
+            // folderGroupBox
+            // 
+            this.folderGroupBox.Controls.Add(this.commonAppDataBtn);
+            this.folderGroupBox.Controls.Add(this.localAppDataBtn);
+            this.folderGroupBox.Controls.Add(this.appDataBtn);
+            this.folderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.folderGroupBox.Location = new System.Drawing.Point(224, 109);
+            this.folderGroupBox.Name = "folderGroupBox";
+            this.folderGroupBox.Size = new System.Drawing.Size(215, 101);
+            this.folderGroupBox.TabIndex = 5;
+            this.folderGroupBox.TabStop = false;
+            this.folderGroupBox.Text = "Locations";
+            // 
+            // commonAppDataBtn
+            // 
+            this.commonAppDataBtn.AutoSize = true;
+            this.commonAppDataBtn.Location = new System.Drawing.Point(10, 67);
+            this.commonAppDataBtn.Name = "commonAppDataBtn";
+            this.commonAppDataBtn.Size = new System.Drawing.Size(88, 17);
+            this.commonAppDataBtn.TabIndex = 2;
+            this.commonAppDataBtn.TabStop = true;
+            this.commonAppDataBtn.Text = "Program data";
+            this.commonAppDataBtn.UseVisualStyleBackColor = true;
+            // 
+            // localAppDataBtn
+            // 
+            this.localAppDataBtn.AutoSize = true;
+            this.localAppDataBtn.Location = new System.Drawing.Point(10, 44);
+            this.localAppDataBtn.Name = "localAppDataBtn";
+            this.localAppDataBtn.Size = new System.Drawing.Size(99, 17);
+            this.localAppDataBtn.TabIndex = 1;
+            this.localAppDataBtn.TabStop = true;
+            this.localAppDataBtn.Text = "Local machines";
+            this.localAppDataBtn.UseVisualStyleBackColor = true;
+            // 
+            // appDataBtn
+            // 
+            this.appDataBtn.AutoSize = true;
+            this.appDataBtn.Location = new System.Drawing.Point(10, 20);
+            this.appDataBtn.Name = "appDataBtn";
+            this.appDataBtn.Size = new System.Drawing.Size(144, 17);
+            this.appDataBtn.TabIndex = 0;
+            this.appDataBtn.TabStop = true;
+            this.appDataBtn.Text = "All user domain machines";
+            this.appDataBtn.UseVisualStyleBackColor = true;
+            // 
             // licensePage
             // 
             this.licensePage.Controls.Add(this.textLicense);
@@ -180,7 +244,7 @@ namespace Sdl.Community.SdlPluginInstaller
     "erms and conditions.";
             this.licensePage.Location = new System.Drawing.Point(0, 0);
             this.licensePage.Name = "licensePage";
-            this.licensePage.Size = new System.Drawing.Size(466, 307);
+            this.licensePage.Size = new System.Drawing.Size(428, 208);
             this.licensePage.TabIndex = 11;
             this.licensePage.Title = "License Agreement";
             // 
@@ -249,70 +313,6 @@ namespace Sdl.Community.SdlPluginInstaller
             this.progressLongTask.Size = new System.Drawing.Size(436, 20);
             this.progressLongTask.TabIndex = 2;
             // 
-            // selectLbl
-            // 
-            this.selectLbl.AutoSize = true;
-            this.selectLbl.Location = new System.Drawing.Point(3, 106);
-            this.selectLbl.Name = "selectLbl";
-            this.selectLbl.Size = new System.Drawing.Size(215, 26);
-            this.selectLbl.TabIndex = 4;
-            this.selectLbl.Text = "Please select the folder where the plugin will be installed";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(3, 90);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 64);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Folde";
-            // 
-            // folderGroupBox
-            // 
-            this.folderGroupBox.Controls.Add(this.commonAppDataBtn);
-            this.folderGroupBox.Controls.Add(this.localAppDataBtn);
-            this.folderGroupBox.Controls.Add(this.appDataBtn);
-            this.folderGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.folderGroupBox.Location = new System.Drawing.Point(224, 109);
-            this.folderGroupBox.Name = "folderGroupBox";
-            this.folderGroupBox.Size = new System.Drawing.Size(215, 101);
-            this.folderGroupBox.TabIndex = 5;
-            this.folderGroupBox.TabStop = false;
-            this.folderGroupBox.Text = "Locations";
-            // 
-            // appDataBtn
-            // 
-            this.appDataBtn.AutoSize = true;
-            this.appDataBtn.Location = new System.Drawing.Point(10, 20);
-            this.appDataBtn.Name = "appDataBtn";
-            this.appDataBtn.Size = new System.Drawing.Size(144, 17);
-            this.appDataBtn.TabIndex = 0;
-            this.appDataBtn.TabStop = true;
-            this.appDataBtn.Text = "All user domain machines";
-            this.appDataBtn.UseVisualStyleBackColor = true;
-            // 
-            // localAppDataBtn
-            // 
-            this.localAppDataBtn.AutoSize = true;
-            this.localAppDataBtn.Location = new System.Drawing.Point(10, 44);
-            this.localAppDataBtn.Name = "localAppDataBtn";
-            this.localAppDataBtn.Size = new System.Drawing.Size(99, 17);
-            this.localAppDataBtn.TabIndex = 1;
-            this.localAppDataBtn.TabStop = true;
-            this.localAppDataBtn.Text = "Local machines";
-            this.localAppDataBtn.UseVisualStyleBackColor = true;
-            // 
-            // commonAppDataBtn
-            // 
-            this.commonAppDataBtn.AutoSize = true;
-            this.commonAppDataBtn.Location = new System.Drawing.Point(10, 67);
-            this.commonAppDataBtn.Name = "commonAppDataBtn";
-            this.commonAppDataBtn.Size = new System.Drawing.Size(88, 17);
-            this.commonAppDataBtn.TabIndex = 2;
-            this.commonAppDataBtn.TabStop = true;
-            this.commonAppDataBtn.Text = "Program data";
-            this.commonAppDataBtn.UseVisualStyleBackColor = true;
-            // 
             // InstallerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,11 +332,11 @@ namespace Sdl.Community.SdlPluginInstaller
             this.tableLayoutPanelStudioVersions.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkStudioVersions)).EndInit();
+            this.folderGroupBox.ResumeLayout(false);
+            this.folderGroupBox.PerformLayout();
             this.licensePage.ResumeLayout(false);
             this.licensePage.PerformLayout();
             this.taskRunnerPage.ResumeLayout(false);
-            this.folderGroupBox.ResumeLayout(false);
-            this.folderGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }

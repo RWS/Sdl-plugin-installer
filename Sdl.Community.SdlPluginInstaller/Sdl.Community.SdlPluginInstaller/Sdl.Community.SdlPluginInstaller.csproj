@@ -36,7 +36,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -96,6 +97,7 @@
     <Compile Include="Services\PluginManagementService.cs" />
     <Compile Include="Services\StudioVersionService.cs" />
     <Compile Include="Services\UninstallService.cs" />
+    <Compile Include="Services\WindowDPIAwarness.cs" />
     <EmbeddedResource Include="InstallerForm.resx">
       <DependentUpon>InstallerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,11 +133,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Sdl.Community.Controls\Sdl.Community.Controls.csproj">
       <Project>{870C7D59-F59B-44D1-961E-C4341DAA5306}</Project>
       <Name>Sdl.Community.Controls</Name>
@@ -146,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sdl-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
