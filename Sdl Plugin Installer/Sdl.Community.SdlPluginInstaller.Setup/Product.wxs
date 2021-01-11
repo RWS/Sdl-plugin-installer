@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?ifndef buildNumber ?>
+<?define buildNumber = 0 ?>
+<?endif?>
+
+<?if $(var.buildNumber) = "" ?>
+<?define buildNumber = 0 ?>
+<?endif?>
+
+<?ifndef compression ?>
+<?define compression = "high" ?>
+<?endif?>
+
+<?define unversionedDisplayName = "SDL Community Plugin Installer" ?>
+
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="$(var.unversionedDisplayName)"
+           Language="1033"
+           Version="5.0.$(var.buildNumber)"
+           Manufacturer="SDL"
+           UpgradeCode="822EEAB3-3110-4106-8358-D3141AFA1B9B">
+    
+    <Package
+      InstallerVersion="301"
+      Compressed="yes"
+      InstallScope="perMachine"
+      Description="SDL plugin installer"
+      InstallPrivileges="elevated"
+      Languages="0"
+      Platform="x86"
+      Manufacturer="SDL"
+      SummaryCodepage="1252"/>
+
+    <Media Id="1" EmbedCab="yes" Cabinet="Product.cab" CompressionLevel="$(var.compression)" />
+
+    <MajorUpgrade MigrateFeatures="yes" DowngradeErrorMessage="A later version of $(var.unversionedDisplayName) is already installed. Set-up will now exit." />
+
+    <Feature Id="ProductFeature" Title="Sdl.Community.SdlPluginInstaller.Setup" Level="1">
+      <ComponentGroupRef Id="CommunityPluginInstaller" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="FlatApplicationShortcut" />
+    </Feature>
+    
+    <Property Id="MSIENFORCEUPGRADECOMPONENTRULES" Value="1" />
+    <Property Id="LIMITUI" Value="1" />
+
+    <Property Id="ARPNOMODIFY" Value="1"/>
+    <Property Id="ARPCONTACT"  Value="SDL Customer Support"/>
+    <Property Id="ARPHELPLINK" Value="http://support.sdl.com"/>
+    <Property Id="ARPHELPTELEPHONE" Value="Check your maintenance agreement."/>
+    <Property Id="ARPURLINFOABOUT" Value="http://www.sdl.com"/>
+    <Property Id="ARPPRODUCTICON" Value="ProductIcon.exe"/>
+
+    <Icon Id="ProductIcon.exe" SourceFile="$(sys.SOURCEFILEDIR)\..\Sdl.Community.SdlPluginInstaller\Resources\Installer.ico"/>
+    <Icon Id="FlatProductIcon.exe" SourceFile="$(sys.SOURCEFILEDIR)\..\Sdl.Community.SdlPluginInstaller\Resources\FlatInstaller.ico"/>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="SDL" Name="SDL">
+          
+        <Component Id="ApplicationShortcut" Transitive="yes">
+          <Condition><![CDATA[VersionNT < 602]]></Condition>
+          <Shortcut Id="ApplicationShortcut"
+              Name="Sdl Plugin Management"
+              Description="Sdl Plugin Management"
+              Target="[INSTALLFOLDER]Sdl.Community.SdlPluginInstaller.exe"
+              IconIndex="0" Icon="ProductIcon.exe"
+              WorkingDirectory="INSTALLFOLDER"/>
+          <RemoveFolder Id="ShortcutFolder" On="uninstall"/>
+          <RegistryValue
+              Root="HKCU"
+              Key="Software/SDL/Sdl.Community.SdlPluginInstaller"
+              Name="installed"
+              Type="integer"
+              Value="1"
+              KeyPath="yes"/>
+        </Component>
+
+          <Component Id="FlatApplicationShortcut" Transitive="yes">
+            <Condition><![CDATA[VersionNT >= 602]]></Condition>
+            <Shortcut Id="FlatApplicationShortcut"
+                Name="Sdl Plugin Management"
+                Description="Sdl Plugin Management"
+                Target="[INSTALLFOLDER]Sdl.Community.SdlPluginInstaller.exe"
+                IconIndex="0" Icon="FlatProductIcon.exe"
+                WorkingDirectory="INSTALLFOLDER"/>
+            <RemoveFolder Id="FlatShortcutFolder" On="uninstall"/>
+            <RegistryValue
+                Root="HKCU"
+                Key="Software/SDL/Sdl.Community.SdlPluginInstaller"
+                Name="installed"
+                Type="integer"
+                Value="1"
+                KeyPath="yes"/>
+          </Component>
+
+         
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="SdlFolder" Name="SDL">
+            <Directory Id="INSTALLFOLDER" Name="SDL plugin installer">
+              <Directory Id="CommunityInstallerDir" />
+            </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+  </Fragment>
+ </Wix>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <ComponentGroup Id="CommunityPluginInstaller">
+      <ComponentRef Id="OXI_Sdl.Community.SdlPluginInstaller.exe"/>
+      <ComponentRef Id="OXI_NLog.dll"/>
+      <ComponentRef Id="OXI_ObjectListView.dll"/>
+      <ComponentRef Id="OXI_Sdl.Community.Controls.dll"/>
+      <ComponentRef Id="OXI_Sdl.Core.PluginFramework.PackageSupport.dll"/>
+      <ComponentRef Id="OXI_CommandLine.dll"/>
+      <ComponentRef Id="OXI_versions.dll"/>
+
+      <ComponentRef Id="pluginmgmt70.png"/>
+      <ComponentRef Id="pluginmgmt150.png"/>
+      <ComponentRef Id="Sdl.Community.SdlPluginInstaller.visualelementsmanifest.xml"/>
+    
+    </ComponentGroup>
+
+
+    <DirectoryRef Id="CommunityInstallerDir" FileSource="$(var.BinFolder)">
+      <Component Id="OXI_Sdl.Community.SdlPluginInstaller.exe">
+        <File Id="OXI_Sdl.Community.SdlPluginInstaller.exe" Name="Sdl.Community.SdlPluginInstaller.exe" KeyPath="yes" />
+
+        <!--SdlPluginInstaller.Document ProgID-->
+        <RegistryValue Root="HKLM" Key="SOFTWARE\Classes\Sdl.Community.SdlPluginInstaller.exe.Document" Name="FriendlyTypeName" Value="Installer application for SDL plugins" Type="string" />
+        <ProgId Id="SdlPluginInstaller.Document" Description="Installer application for SDL plugins" Advertise="yes">
+          <Extension Id="sdlplugin">
+            <Verb Id="open" Command="[CommunityInstallerDir]Sdl.Community.SdlPluginInstaller.exe" Argument="&quot;%1&quot;" />
+            <MIME Advertise="yes" ContentType="application/sdlplugin" Default="yes" />
+          </Extension>
+        </ProgId>
+
+        <RegistryValue Root="HKCR" Key=".sdlplugin" Value="Sdl Plugin Installer" Type="string"/>
+        <RegistryValue Root="HKCR" Key="Sdl Plugin Installer" Value="Sdl plugin file type" Type="string" />
+        <RegistryValue Root="HKCR" Key="Sdl Plugin Installer\DefaultIcon" Value="[CommunityInstallerDir]Sdl.Community.SdlPluginInstaller.exe,0" Type="string" />
+        <RegistryValue Root="HKCR" Key="Sdl Plugin Installer\shell\open\command" Value="&quot;[CommunityInstallerDir]Sdl.Community.SdlPluginInstaller.exe&quot; &quot;%1&quot;" Type="string" />
+      </Component>
+
+      <Component>
+        <File Source="$(var.BinFolder)Resources\Sdl.Community.SdlPluginInstaller.visualelementsmanifest.xml" />
+      </Component>
+           
+      <Component Id="OXI_NLog.dll">
+        <File Id="OXI_NLog.dll" Name="NLog.dll" />
+      </Component>
+      <Component Id="OXI_ObjectListView.dll">
+        <File Id="OXI_ObjectListView.dll" Name="ObjectListView.dll" />
+      </Component>
+      <Component Id="OXI_Sdl.Community.Controls.dll">
+        <File Id="OXI_Sdl.Community.Controls.dl" Name="Sdl.Community.Controls.dll" />
+      </Component>
+      <Component Id="OXI_Sdl.Core.PluginFramework.PackageSupport.dll">
+        <File Id="OXI_Sdl.Core.PluginFramework.PackageSupport.dll" Name="Sdl.Core.PluginFramework.PackageSupport.dll" />
+      </Component>
+      <Component Id="OXI_CommandLine.dll">
+        <File Id="OXI_CommandLine.dll" Name="CommandLine.dll" />
+      </Component>
+      <Component Id="OXI_versions.dll">
+        <File Id="OXI_versions.dll" Name="sdl.versioning.dll" />
+      </Component>
+
+      <Directory Id="PluginManagerAssetsDir" Name="Assets" FileSource="$(var.BinFolder)Resources">
+        <Component>
+          <File Name="pluginmgmt70.png"/>
+        </Component>
+        <Component>
+          <File Name="pluginmgmt150.png"/>
+        </Component>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
+</Wix>
