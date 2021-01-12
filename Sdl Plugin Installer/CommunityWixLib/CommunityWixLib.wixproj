@@ -26,5 +26,4 @@
     <Compile Include="PluginInstaller.wxs" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
-  <Import Project="..\..\.paket\paket.targets" />
 </Project>

@@ -35,12 +35,5 @@
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(USERPROFILE)\.nuget\packages\sdlkeys\2.0.0\tools\Sdl.snk">
-      <Link>Sdl.snk</Link>
-    </Content>
-    <Content Include="paket.references" />
-  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
-  <Import Project="..\..\.paket\paket.targets" />
 </Project>

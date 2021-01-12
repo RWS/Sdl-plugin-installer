@@ -1,13 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{9602197D-D0AD-4D47-AAD5-890D4D8EFA52}"
-	ProjectSection(SolutionItems) = preProject
-		..\paket.dependencies = ..\paket.dependencies
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.Community.SdlPluginInstaller", "Sdl.Community.SdlPluginInstaller\Sdl.Community.SdlPluginInstaller.csproj", "{6867BA8C-E59C-4FC0-8379-78A16F84BE22}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sdl.Community.Controls", "Sdl.Community.Controls\Sdl.Community.Controls.csproj", "{870C7D59-F59B-44D1-961E-C4341DAA5306}"
