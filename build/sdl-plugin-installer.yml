@@ -1,0 +1,29 @@
+trigger:
+- master
+
+pr:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+- name: BuildPlatform
+  value: 'mixed platforms'
+- name: Configuration
+  value: 'release'
+steps:
+- task: NuGetToolInstaller@1
+- task: NuGetCommand@2
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+
+- task: VSBuild@1
+  displayName: 'Build solution Deployment/Sdl Plugin Installer/Sdl.Community.SdlPluginInstaller.sln'
+  inputs:
+    solution: '**/Sdl.Community.SdlPluginInstaller.sln'
+    msbuildArgs: '/p:RunWixToolsOutOfProc=true'
+    platform: '$(BuildPlatform)'
+    configuration: '$(Configuration)'
