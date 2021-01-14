@@ -19,7 +19,7 @@
   <Product Id="*"
            Name="$(var.unversionedDisplayName)"
            Language="1033"
-           Version="5.0.$(var.buildNumber)"
+           Version="15.0.$(var.buildNumber)"
            Manufacturer="SDL"
            UpgradeCode="822EEAB3-3110-4106-8358-D3141AFA1B9B">
     
