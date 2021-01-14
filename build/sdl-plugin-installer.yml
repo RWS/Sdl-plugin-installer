@@ -17,7 +17,8 @@ variables:
   value: 'mixed platforms'
 - name: Configuration
   value: 'release'
-
+- name: SdlPluginInstallerNuGet
+  value: 'CommunityInstaller.wixlib'
 name: $(Build.DefinitionName)_$(SourceBranchName)_$(Version.MajorMinorPatch).$(Version.Revision)
 
 steps:
@@ -43,7 +44,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
     configuration: $(Configuration)
-    buildProperties: 'version=$(Version.MajorMinorPatch).$(Version.Revision);'
+    buildProperties: 'id=$(SdlPluginInstallerNuGet); version=$(Version.MajorMinorPatch).$(Version.Revision);'
 
 - task: NuGetCommand@2
   displayName: 'NuGet push'
