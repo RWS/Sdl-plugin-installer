@@ -44,7 +44,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
     configuration: $(Configuration)
-    buildProperties: 'id=$(SdlPluginInstallerNuGet); version=$(Version.MajorMinorPatch).$(Version.Revision);'
+    buildProperties: 'id=$(SdlPluginInstallerNuGet);version=$(Version.MajorMinorPatch).$(Version.Revision);'
 
 - task: NuGetCommand@2
   displayName: 'NuGet push'
