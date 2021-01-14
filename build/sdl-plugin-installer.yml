@@ -28,12 +28,6 @@ steps:
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
 
-- task: SDLVersion@2
-  inputs:
-    Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(Build.DefinitionName)_$(Version.MajorMinorPatch).$(Version.Revision)'
-    FilenamePattern: '**/*info.cs'
-
 - task: VSBuild@1
   displayName: 'Build solution Deployment/Sdl Plugin Installer/Sdl.Community.SdlPluginInstaller.sln'
   inputs:
