@@ -1,0 +1,26 @@
+
+variables:
+
+- name: DefaultBuildVm
+  value: 'vs2017-win2016'
+#windows-latest
+#vs2017-win2016
+
+- name: StudioProductIdentifier  
+  value: studio15
+
+- name: StudioBranch
+  value: refs/heads/Release/15.2
+
+- name: VSVersion
+  value: latest
+# latest or use 16.0 for 2019, 15.0 for VS2017 etc.
+
+- name: Version.MajorMinorPatch
+  value: 15.2
+
+- name: Version.Revision
+  value: $[counter(variables['Version.MajorMinorPatch'], 0)]
+
+- name: PipelineVersion
+  value: $(Version.MajorMinorPatch).$(Version.Revision)
