@@ -31,7 +31,7 @@ steps:
 - task: SDLVersion@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(BuildDefinitionName)_$(Version.MajorMinorPatch).$(Version.Revision)'
+    VersionNumber: '$(Build.DefinitionName)_$(Version.MajorMinorPatch).$(Version.Revision)'
     FilenamePattern: '**/*info.cs'
 
 - task: VSBuild@1
@@ -43,8 +43,17 @@ steps:
     configuration: '$(Configuration)'
 
 - task: NuGetCommand@2
+  displayName: 'NuGet pack'
   condition: ne(variables['Build.Reason'], 'PullRequest')
   inputs:
     command: 'pack'
     packagesToPack: '**/*.nuspec'
-    versioningScheme: 'byBuildNumber'
+    configuration: $(Configuration)
+    buildProperties: 'version=$(Version.MajorMinorPatch).$(Version.Revision);'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet push'
+  condition: ne(variables['Build.Reason'], 'PullRequest')
+  inputs:
+    command: 'push'
+    publishVstsFeed: 'af66e256-9c46-4fba-ad75-09bf110ec1cc'
