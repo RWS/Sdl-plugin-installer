@@ -59,9 +59,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Sdl.TranslationStudio.Info.cs">
-      <Link>Sdl.TranslationStudio.Info.cs</Link>
-    </Compile>
     <Compile Include="InstallerForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -8,7 +8,6 @@ using System.Threading;
 using CommandLine;
 using Sdl.Community.SdlPluginInstaller.Model;
 using Sdl.Community.SdlPluginInstaller.Services;
-using Sdl.Versioning;
 
 namespace Sdl.Community.SdlPluginInstaller.Cmd
 {
@@ -16,7 +15,7 @@ namespace Sdl.Community.SdlPluginInstaller.Cmd
     {
         private static readonly DeployOptions Dpo = new DeployOptions();
         private static readonly List<PluginPackageInfo> PluginPackages = new List<PluginPackageInfo>();
-        private static PluginVersioningService _VersionService;
+        private static StudioVersionService _studioVersionService;
         private static List<StudioVersion> _installedStudioVersions;
         private static bool _shown40;
         private static bool _shown80;
@@ -44,8 +43,8 @@ namespace Sdl.Community.SdlPluginInstaller.Cmd
                     }
 
                 }
-                _VersionService = new PluginVersioningService();
-                _installedStudioVersions = _VersionService.VersioningService.GetInstalledStudioVersions();
+                _studioVersionService = new StudioVersionService();
+                _installedStudioVersions = _studioVersionService.GetInstalledStudioVersions();
 
                 var backgroundWorker = new BackgroundWorker
                 {
@@ -116,43 +115,60 @@ namespace Sdl.Community.SdlPluginInstaller.Cmd
             foreach (var plugin in PluginPackages)
             {
                
-                var notSupportedVersions= _VersionService.GetNotSupportedStudioVersions(plugin);
-                var selectedVersion= Dpo.Version;
+                var notSupportedVersions=_studioVersionService.GetNotSupportedStudioVersions(plugin);
+                var selectedVersion=string.Empty;
 
-                var notSupported = notSupportedVersions.FirstOrDefault(v => v.Version == selectedVersion);
-                if (notSupported !=null)
+                switch (Dpo.Version)
                 {
-                    Console.WriteLine(@"Selected studio version {0} is not compatible with the plugin version {1}",notSupported.PublicVersion,plugin.Version);
+                    case SelectedVersion.Studio2:
+                        selectedVersion = "Studio2";
+                        break;
+                    case SelectedVersion.Studio3:
+                        selectedVersion = "Studio3";
+                        break;
+                    case SelectedVersion.Studio4:
+                        selectedVersion = "Studio4";
+                        break;
+                    case SelectedVersion.Studio5:
+                        selectedVersion = "Studio5";
+                        break;
+                    case SelectedVersion.Studio6:
+                        selectedVersion = "Studio6";
+                        break;
+                }
+
+                    var notSupported = notSupportedVersions.FirstOrDefault(v => v.Version == selectedVersion);
+                    if (notSupported !=null)
+                    {
+                        Console.WriteLine(@"Selected studio version {0} is not compatible with the plugin version {1}",notSupported.PublicVersion,plugin.Version);
                        
-                }
-                else
-                {
-                    Console.WriteLine(@"Deploy started for following plugin: {0}", plugin.PluginName);
-
-                    _shown40 = false;
-                    _shown80 = false;
-
-                    var installService = new InstallService(plugin, _installedStudioVersions);
-                    var deployLocation = new Environment.SpecialFolder();
-                    switch (Dpo.DeployLocation)
-                    {
-                        case DeployDestination.Local:
-                            deployLocation = Environment.SpecialFolder.LocalApplicationData;
-                            break;
-                        case DeployDestination.ProgramData:
-                            deployLocation = Environment.SpecialFolder.CommonApplicationData;
-                            break;
-                        case DeployDestination.Roaming:
-
-                            deployLocation = Environment.SpecialFolder.ApplicationData;
-                            break;
                     }
-
-                    if (backgroundWorker != null)
+                    else
                     {
-                        installService.DeployPackage(backgroundWorker.ReportProgress, deployLocation);
+                        Console.WriteLine(@"Deploy started for following plugin: {0}", plugin.PluginName);
+
+                        _shown40 = false;
+                        _shown80 = false;
+
+                        var installService = new InstallService(plugin, _installedStudioVersions);
+                        var deployLocation = new Environment.SpecialFolder();
+                        switch (Dpo.DeployLocation)
+                        {
+                            case DeployDestination.Local:
+                                deployLocation = Environment.SpecialFolder.LocalApplicationData;
+                                break;
+                            case DeployDestination.ProgramData:
+                                deployLocation = Environment.SpecialFolder.CommonApplicationData;
+                                break;
+                            case DeployDestination.Roaming:
+
+                                deployLocation = Environment.SpecialFolder.ApplicationData;
+                                break;
+                        }
+
+                        if (backgroundWorker != null)
+                            installService.DeployPackage(backgroundWorker.ReportProgress, deployLocation);
                     }
-                }
  
             }
 

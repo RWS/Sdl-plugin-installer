@@ -2,7 +2,6 @@
 using NLog;
 using Sdl.Community.SdlPluginInstaller.Model;
 using Sdl.Community.SdlPluginInstaller.Services;
-using Sdl.Versioning;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Sdl.Community.SdlPluginInstaller.Model;
-using Sdl.Versioning;
 
 namespace Sdl.Community.SdlPluginInstaller.Services
 {
@@ -36,8 +35,9 @@ namespace Sdl.Community.SdlPluginInstaller.Services
             return
                 StudioVersions.Select(
                     studioVersion =>
-                        IsPluginInstalledForVersion(studioVersion, _pluginPackageInfo.PluginName))
-                        .Any(isPluginInstalled => isPluginInstalled);
+                        IsPluginInstalledForVersion(studioVersion.ExecutableVersion.Major.ToString(),
+                            _pluginPackageInfo.PluginName))
+                    .Any(isPluginInstalled => isPluginInstalled);
         }
 
         public List<string> GetStudioProcesses()
@@ -51,7 +51,8 @@ namespace Sdl.Community.SdlPluginInstaller.Services
         {
             foreach (var studioVersion in StudioVersions)
             {
-                RemovePluginForStudioVersion(studioVersion, _pluginPackageInfo.PluginName);
+                RemovePluginForStudioVersion(studioVersion.ExecutableVersion.Major.ToString(),
+                   _pluginPackageInfo.PluginName);
             }
         }
 
@@ -67,16 +68,11 @@ namespace Sdl.Community.SdlPluginInstaller.Services
                     fs.Seek(0, SeekOrigin.Begin);
                     var br = new BinaryReader(fs);
                     {
-                        var pluginfolder =
-                               Path.Combine(Environment.GetFolderPath(folder), string.Format((Versions.PluginPackagePath), studioVersion.PluginSubPath));
                         var path =
-                               Path.Combine(pluginfolder, string.Format("{0}.sdlplugin", _pluginPackageInfo.PluginName));
-
-                        
-                        if (!Directory.Exists(pluginfolder))
-                        {
-                            Directory.CreateDirectory(pluginfolder);
-                        }
+                               Path.Combine(Environment.GetFolderPath(folder),
+                                   @"SDL\SDL Trados Studio", studioVersion.ExecutableVersion.Major.ToString(),
+                                   @"Plugins\Packages",
+                                   string.Format("{0}.sdlplugin", _pluginPackageInfo.PluginName)); 
 
                         using (var fsDest = new FileStream(path, FileMode.Create))
                         {
@@ -106,37 +102,31 @@ namespace Sdl.Community.SdlPluginInstaller.Services
             }
         }
 
-        private bool IsPluginInstalledForVersion(StudioVersion studioVersion, string pluginName)
+        private bool IsPluginInstalledForVersion(string version, string pluginName)
         {
             return
                 _pluginFolderLocations.Select(
                     pluginFolderLocation =>
-                        Path.Combine(Environment.GetFolderPath(pluginFolderLocation),
-                        string.Format(Versions.PluginPackagePath, studioVersion.PluginSubPath),
-                        string.Format("{0}.sdlplugin", pluginName))).Any(File.Exists);
+                        Path.Combine(Environment.GetFolderPath(pluginFolderLocation), @"SDL\SDL Trados Studio", version,
+                           @"Plugins\Packages", string.Format("{0}.sdlplugin", pluginName))).Any(File.Exists);
         }
 
        
 
-        private void RemovePluginForStudioVersion(StudioVersion studioVersion, string pluginName)
+        private void RemovePluginForStudioVersion(string version, string pluginName)
         {
             foreach (var pluginFolderLocation in _pluginFolderLocations)
             {
-                var packagePluginPath = Path.Combine(
-                    Environment.GetFolderPath(pluginFolderLocation),
-                    string.Format(Versions.PluginPackagePath, studioVersion.PluginSubPath),
-                    string.Format("{0}.sdlplugin", pluginName));
-
-                var unpackedFolder = Path.Combine(
-                    Environment.GetFolderPath(pluginFolderLocation),
-                    string.Format(Versions.PluginUnpackPath, studioVersion.PluginSubPath),
-                    pluginName);
-
+                var packagePluginPath = Path.Combine(Environment.GetFolderPath(pluginFolderLocation),
+                    @"SDL\SDL Trados Studio", version,
+                    @"Plugins\Packages", string.Format("{0}.sdlplugin", pluginName));
+               var unpackedFolder = Path.Combine(Environment.GetFolderPath(pluginFolderLocation),
+                    @"SDL\SDL Trados Studio", version,
+                    @"Plugins\Unpacked",pluginName);
                 if (Directory.Exists(unpackedFolder))
                 {
                     Directory.Delete(unpackedFolder, true);
                 }
-
                 if (File.Exists(packagePluginPath))
                 {
                     File.Delete(packagePluginPath);

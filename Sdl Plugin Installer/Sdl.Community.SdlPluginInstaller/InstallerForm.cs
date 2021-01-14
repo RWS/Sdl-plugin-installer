@@ -8,14 +8,13 @@ using Sdl.Community.Controls;
 using Sdl.Community.SdlPluginInstaller.Model;
 using Sdl.Community.SdlPluginInstaller.Properties;
 using Sdl.Community.SdlPluginInstaller.Services;
-using Sdl.Versioning;
 
 namespace Sdl.Community.SdlPluginInstaller
 {
     public partial class InstallerForm : Form
     {
         private readonly PluginPackageInfo _pluginPackageInfo;
-        private readonly PluginVersioningService _VersionService;
+        private readonly StudioVersionService _studioVersionService;
         private readonly InstallService _installService;
         private readonly Logger _logger;
         private BackgroundWorker _bw;
@@ -31,7 +30,7 @@ namespace Sdl.Community.SdlPluginInstaller
             try
             {
                 _pluginPackageInfo = pluginPackageInfo;
-                _VersionService = new PluginVersioningService();
+                _studioVersionService = new StudioVersionService();
                 _installService = new InstallService(_pluginPackageInfo);
             }
             catch (Exception exception)
@@ -53,7 +52,7 @@ namespace Sdl.Community.SdlPluginInstaller
 
             textLicense.Rtf = Resources._160627__SDL_AppStore_End_User_Terms__Conditions_July_29_2016_Final;
 
-            var installedStudioVersions = _VersionService.VersioningService.GetInstalledStudioVersions();
+            var installedStudioVersions = _studioVersionService.GetInstalledStudioVersions();
             if (installedStudioVersions.Count == 0)
             {
                 this.finalPage.Description = string.Format("There are no versions of SDL Trados Studio installed.");
@@ -67,9 +66,7 @@ namespace Sdl.Community.SdlPluginInstaller
             };
 
             chkStudioVersions.SetObjects(installedStudioVersions);
-            var versionsNotSupportedByPlugin = _VersionService.GetNotSupportedStudioVersions(_pluginPackageInfo);
-            chkStudioVersions.DisableObjects(versionsNotSupportedByPlugin);
-
+            var versionsNotSupportedByPlugin = _studioVersionService.GetNotSupportedStudioVersions(_pluginPackageInfo); chkStudioVersions.DisableObjects(versionsNotSupportedByPlugin);
             chkStudioVersions.BuildList(true);
             appDataBtn.Checked = true;
             _bw = new BackgroundWorker { WorkerSupportsCancellation = true, WorkerReportsProgress = true };

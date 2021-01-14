@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using NLog;
 using Sdl.Community.SdlPluginInstaller.Model;
-using Sdl.Versioning;
 
 namespace Sdl.Community.SdlPluginInstaller.Services
 {
@@ -21,11 +20,11 @@ namespace Sdl.Community.SdlPluginInstaller.Services
         private readonly List<string> _pluginFolderLocations = new List<string>
         {
            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-               Versions.PluginPackagePath),
+               @"SDL\SDL Trados Studio\{0}\Plugins\Packages"),
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-               Versions.PluginPackagePath),
+               @"SDL\SDL Trados Studio\{0}\Plugins\Packages"),
              Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-               Versions.PluginPackagePath)
+               @"SDL\SDL Trados Studio\{0}\Plugins\Packages"),
         };
 
         public List<PluginPackageInfo> GetInstalledPlugins(StudioVersion studioVersion)
@@ -35,7 +34,7 @@ namespace Sdl.Community.SdlPluginInstaller.Services
 
             var pluginPath = _pluginFolderLocations.Select(
                 pluginFolderLocation =>
-                    string.Format(pluginFolderLocation, studioVersion.PluginSubPath));
+                    string.Format(pluginFolderLocation, studioVersion.ExecutableVersion.Major));
 
             //check the folder exists before iterating on it.
             var ExistingPluginPath = new List<String>();
