@@ -1,9 +1,0 @@
- 
-    nuget CommandLineParser 1.9.71 restriction: >= net452
-    nuget NLog 4.6.7 restriction: >= net452
-    nuget NSubstitute 3.1.0 restriction: >= net47
-    nuget ObjectListView.Official 2.9.1 restriction: >= net452
-    nuget Sdl.Tools.Chainer 2.2.0.3
-    nuget SDLKeys 2.0.0
-    nuget log4net 2.0.8 restriction: >= net452
-    nuget Sdl.Autoupdate (16.0.0.39)

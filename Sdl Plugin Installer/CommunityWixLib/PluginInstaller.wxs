@@ -8,7 +8,6 @@
       <ComponentRef Id="OXI_Sdl.Community.Controls.dll"/>
       <ComponentRef Id="OXI_Sdl.Core.PluginFramework.PackageSupport.dll"/>
       <ComponentRef Id="OXI_CommandLine.dll"/>
-      <ComponentRef Id="OXI_versions.dll"/>
 
       <ComponentRef Id="pluginmgmt70.png"/>
       <ComponentRef Id="pluginmgmt150.png"/>
@@ -54,9 +53,6 @@
       </Component>
       <Component Id="OXI_CommandLine.dll">
         <File Id="OXI_CommandLine.dll" Name="CommandLine.dll" />
-      </Component>
-      <Component Id="OXI_versions.dll">
-        <File Id="OXI_versions.dll" Name="sdl.versioning.dll" />
       </Component>
 
       <Directory Id="PluginManagerAssetsDir" Name="Assets" FileSource="$(var.BinFolder)Resources">

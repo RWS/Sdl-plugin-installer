@@ -9,7 +9,14 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         ProgramData
     }
 
-   
+    public enum SelectedVersion
+    {
+        Studio2,
+        Studio3,
+        Studio4,
+        Studio5,
+        Studio6
+    }
 
     public class DeployOptions
     {
@@ -31,8 +38,8 @@ namespace Sdl.Community.SdlPluginInstaller.Model
         public bool CloseConsole { get; set; }
 
         [Option('v', "studioVersion",
-            HelpText = "Tell the command Studio version. Versions are in the following format: Studio2,Studio3,Studio4,Studio5,Studio15,Studio16Beta etc",
+            HelpText = "Tell the command Studio version. Versions are in the following format: Studio2,Studio3,Studio4,Studio5,Studio6",
             Required = true)]
-        public string Version { get; set; }
+        public SelectedVersion Version { get; set; }
     }
 }

@@ -12,15 +12,15 @@
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <OutputPath>..\..\..\..\Bin\Mixed Platforms\Debug\</OutputPath>
+    <OutputPath>..\Bin\Mixed Platforms\Debug\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug;BinFolder=..\..\..\..\Bin\Mixed Platforms\$(Configuration)\</DefineConstants>
+    <DefineConstants>Debug;BinFolder=..\Bin\Mixed Platforms\$(Configuration)\</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>..\..\..\..\Bin\Mixed Platforms\Release\</OutputPath>
+    <OutputPath>..\Bin\Mixed Platforms\Release\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <LibBindFiles>True</LibBindFiles>
-    <DefineConstants>BinFolder=..\..\..\..\Bin\Mixed Platforms\$(Configuration)\</DefineConstants>
+    <DefineConstants>BinFolder=..\Bin\Mixed Platforms\$(Configuration)\</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="PluginInstaller.wxs" />
