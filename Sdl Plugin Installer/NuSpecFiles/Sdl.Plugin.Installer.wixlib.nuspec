@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>SDL</authors>
+    <owners>SDL</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Sdl plugin installer wixlib</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2021</copyright>	
+  </metadata>
+  <files>	
+    <file src="Sdl.plugin.installer.wixlib.targets" target="Build\$id$.targets" />
+    <file src="..\bin\Mixed Platforms\Release\CommunityInstaller.wixlib" target="Build\" />		
+  </files>
+</package>
