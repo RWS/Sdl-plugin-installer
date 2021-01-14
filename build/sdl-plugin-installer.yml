@@ -12,6 +12,7 @@ pool:
   vmImage: '$(DefaultBuildVm)'
 
 variables:
+- template: branch-variables.yml
 - name: BuildPlatform
   value: 'mixed platforms'
 - name: Configuration
