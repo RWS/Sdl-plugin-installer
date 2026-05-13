@@ -1,7 +1,7 @@
 # Sdl-plugin-installer
 
 > [!WARNING]
-> Note: This application is no-longer in use in the latest versions of Trados Studio and this repo is no longer mantained.
+> This application is no-longer in use in the latest versions of Trados Studio and this repo is no longer mantained.
 > Up to date developer information can be found here https://developers.rws.com/
 
 
