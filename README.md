@@ -1,5 +1,11 @@
 # Sdl-plugin-installer
 
+[!WARNING]
+Note: This application is no-longer in use in the latest versions of Trados Studio and this repo is no longer mantained.
+Up to date developer information can be found  here https://developers.rws.com/
+
+
+
 This is intended to be an universal installer for all SDL plugins. When this installed on the machine it will be installed as a default application for *.sdlplugin file type, meaning that everytime such a file is double clicked the installer will launch and guide through a series of steps that help you install the plugin you want. The installer has the following features:
 
 1. Default application for *.sdlplugin file type.
@@ -12,7 +18,7 @@ OpenExchange was updated to allow publishing plugins without wrapping them up in
 
 ## Releases
 
-You can get the latest versions from [here](http://www.translationzone.com/openexchange/app/sdlplugininstaller-797.html#85394).
+You can get the latest versions from [here](https://github.com/RWS/Sdl-plugin-installer/releases/tag/1.0.196).
 
 ##Contribution
 
@@ -25,6 +31,4 @@ You want to add a new functionality or you spot a bug please fill free to create
 * [Visual Studio 2019](http://www.visualstudio.com/downloads/download-visual-studio-vs) - express/community edition can be used
 * [wix toolset](https://wixtoolset.org/releases/) - if you want to generate the installer
 
-##Issues
 
-If you find an issue you report it [here](https://github.com/sdl/SDL-Community/issues).
